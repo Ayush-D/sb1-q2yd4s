@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Upload, MessageSquare, Robot } from 'lucide-react';
+import { Send, Upload, MessageSquare } from 'lucide-react';
 import ChatMessage from './components/ChatMessage';
 import CodeInput from './components/CodeInput';
 import { sendMessage, uploadFile, generateImage } from './api';
@@ -39,7 +39,7 @@ function App() {
         const imageUrl = await generateImage(imagePrompt);
         const assistantMessage: Message = { 
           role: 'assistant', 
-          content: `Here's the image you requested:\n\n![Generated Image](${imageUrl})`,
+          content: `Here's the image you requested:\n\n![Generated Image](${imagePrompt})`,
           imageUrl: imageUrl
         };
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
