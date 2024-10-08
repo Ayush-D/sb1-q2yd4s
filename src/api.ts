@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = "5e00cfbd63d6408c880d9f380a2daaca";
+const API_KEY = "xxxxx";
 const BASE_URL = "https://meow-openai.openai.azure.com/openai/deployments";
 const GPT_ENDPOINT = `${BASE_URL}/gpt-4o/chat/completions?api-version=2024-08-01-preview`;
 const DALL_E_ENDPOINT = `${BASE_URL}/dall-e-3/images/generations?api-version=2024-02-01`;
