@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const OPENAI_API_KEY = "5e00cfbd63d6408c880d9f380a2daaca";
+const OPENAI_API_KEY = "XXXXXXXXXX";
 const OPENAI_BASE_URL = "https://meow-openai.openai.azure.com/openai/deployments";
 const GPT_ENDPOINT = `${OPENAI_BASE_URL}/gpt-4o/chat/completions?api-version=2024-08-01-preview`;
 const DALL_E_ENDPOINT = `${OPENAI_BASE_URL}/dall-e-3/images/generations?api-version=2024-02-01`;
 
-const VISION_API_KEY = "3518f3783143406abda726de5a041a8e";
+const VISION_API_KEY = "XXXXXXXXXX";
 const VISION_ENDPOINT = "https://dekhnevaliapi.cognitiveservices.azure.com/";
 
 const openaiHeaders = {
