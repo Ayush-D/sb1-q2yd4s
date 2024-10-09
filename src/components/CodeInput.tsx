@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, RefObject } from 'react';
 
 interface CodeInputProps {
   value: string;
@@ -6,19 +6,19 @@ interface CodeInputProps {
   onSubmit: () => void;
   placeholder: string;
   disabled: boolean;
+  inputRef?: RefObject<HTMLTextAreaElement>;
 }
 
-const CodeInput: React.FC<CodeInputProps> = ({ value, onChange, onSubmit, placeholder, disabled }) => {
+const CodeInput: React.FC<CodeInputProps> = ({ value, onChange, onSubmit, placeholder, disabled, inputRef }) => {
   const [rows, setRows] = useState(1);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     adjustTextareaHeight();
   }, [value]);
 
   const adjustTextareaHeight = () => {
-    if (textareaRef.current) {
-      const textarea = textareaRef.current;
+    if (inputRef?.current) {
+      const textarea = inputRef.current;
       const lineHeight = 24; // Increased line height
       const minRows = 1;
       const maxRows = 5;
@@ -43,7 +43,7 @@ const CodeInput: React.FC<CodeInputProps> = ({ value, onChange, onSubmit, placeh
   return (
     <div className="relative border rounded-lg focus-within:ring-2 focus-within:ring-blue-500 bg-white shadow-sm">
       <textarea
-        ref={textareaRef}
+        ref={inputRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -52,11 +52,11 @@ const CodeInput: React.FC<CodeInputProps> = ({ value, onChange, onSubmit, placeh
         rows={rows}
         className="w-full p-3 bg-transparent resize-none outline-none rounded-lg"
         style={{
-          color: '#2D3748', // Darker text for better readability
-          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif", // Modern, readable font
+          color: '#2D3748',
+          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
           fontSize: '16px',
           lineHeight: '24px',
-          minHeight: '48px', // Slightly taller minimum height
+          minHeight: '48px',
           maxHeight: '120px',
           overflowY: rows >= 5 ? 'auto' : 'hidden',
           transition: 'all 0.2s ease',

@@ -9,6 +9,7 @@
 
 .prose a {
   color: #3182ce;
+  text-decoration: underline;
 }
 
 .prose strong {
@@ -19,6 +20,9 @@
 .prose code {
   color: #dd1144;
   font-weight: 600;
+  background-color: #f7fafc;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
 }
 
 .prose pre {
@@ -45,19 +49,23 @@
   line-height: inherit;
 }
 
+.prose ul, .prose ol {
+  padding-left: 1.625em;
+}
+
 .prose ul {
   list-style-type: disc;
-  padding-left: 1.625em;
 }
 
 .prose ol {
   list-style-type: decimal;
-  padding-left: 1.625em;
 }
 
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
   color: inherit;
   font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .prose blockquote {
@@ -72,4 +80,42 @@
   padding-left: 1em;
 }
 
-/* Remove the textarea and syntax-highlighter styles from here */
+.prose hr {
+  border-color: #e2e8f0;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.prose table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+
+.prose thead {
+  color: #1a202c;
+  font-weight: 600;
+  border-bottom-width: 1px;
+  border-bottom-color: #e2e8f0;
+}
+
+.prose thead th {
+  vertical-align: bottom;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+
+.prose tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: #e2e8f0;
+}
+
+.prose tbody td {
+  vertical-align: top;
+  padding: 0.5714286em;
+}
