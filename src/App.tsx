@@ -100,7 +100,22 @@ function App() {
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
-      await processImageFile(files[0]);
+      await processFile(files[0]);
+    }
+  };
+
+  const processFile = async (file: File) => {
+    if (file.type.startsWith('image/')) {
+      await processImageFile(file);
+    } else {
+      // Handle non-image files
+      const content = await uploadFile(file);
+      setProcessedImage({
+        file,
+        previewUrl: URL.createObjectURL(file),
+        extractedText: content,
+        analyzing: false
+      });
     }
   };
 
@@ -113,13 +128,13 @@ function App() {
         describeImage(file),
         extractTextFromImage(file)
       ]);
-      setProcessedImage(prev => 
-        prev ? { ...prev, description: imageDescription, extractedText, analyzing: false } : null
+      setProcessedImage(prev =>
+          prev ? { ...prev, description: imageDescription, extractedText, analyzing: false } : null
       );
     } catch (error) {
       console.error('Error processing image:', error);
-      setProcessedImage(prev => 
-        prev ? { ...prev, description: 'Error processing image', analyzing: false } : null
+      setProcessedImage(prev =>
+          prev ? { ...prev, description: 'Error processing image', analyzing: false } : null
       );
     }
   };
@@ -159,8 +174,8 @@ function App() {
     setIsDragging(false);
 
     const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0 && files[0].type.startsWith('image/')) {
-      await processImageFile(files[0]);
+    if (files.length > 0) {
+      await processFile(files[0]);
     }
   };
 
@@ -234,7 +249,7 @@ function App() {
             ref={fileInputRef}
             onChange={handleFileUpload}
             className="hidden"
-            accept="image/*"
+            accept="*/*"  // This allows all file types
             disabled={isLoading || !!processedImage}
           />
           <button
